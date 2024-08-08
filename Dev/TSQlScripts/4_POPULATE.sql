@@ -1,0 +1,152 @@
+﻿USE PHONEBOOK
+GO
+
+IF NOT EXISTS (
+	SELECT * 
+	FROM CITIES
+	FULL OUTER JOIN PERSONS
+		ON CITIES.ID = PERSONS.CITY_ID
+	FULL OUTER JOIN PHONE_NUMBERS
+		ON PERSONS.ID = PHONE_NUMBERS.PERSON_ID
+	FULL OUTER JOIN PHONE_TYPES
+		ON PHONE_NUMBERS.PHONE_TYPE_ID = PHONE_TYPES.ID
+)
+BEGIN TRY
+	BEGIN TRANSACTION
+
+	INSERT INTO [CITIES] ( 
+	[UPDATE_COUNTER],
+	[CITY_NAME],
+	[AREA]
+)
+	VALUES 
+	(0, N'София', N'София град'),
+	(0, N'Пловдив', N'Пловдив'),
+	(0, N'Варна', N'Варна'),
+	(0, N'Бургас', N'Бургас'),
+	(0, N'Русе', N'Русе'),
+	(0, N'Стара Загора', N'Стара Загора'),
+	(0, N'Плевен', N'Плевен'),
+	(0, N'Сливен', N'Сливен'),
+	(0, N'Добрич', N'Добрич'),
+	(0, N'Шумен', N'Шумен'),
+	(0, N'Хасково', N'Хасково'),
+	(0, N'Пазарджик', N'Пазарджик'),
+	(0, N'Благовеград', N'Благоевград'),
+	(0, N'Ямбол', N'Ямбол'),
+	(0, N'Перник', N'Перник'),
+	(0, N'Велико Търново', N'Велико Търново')
+
+	INSERT INTO [PHONE_TYPES] ( 
+	[UPDATE_COUNTER],
+	[PHONE_TYPE]
+)
+	VALUES 
+	(0, N'Мобилен'),
+	(0, N'Домашен'),
+	(0, N'Служебен')
+
+	INSERT INTO [PERSONS] ( 
+	[UPDATE_COUNTER],
+	[FIRST_NAME],
+	[MIDDLE_NAME],
+	[LAST_NAME],
+	[UCN],
+	[CITY_ID],
+	[PERSON_ADDRESS]
+)
+	VALUES
+	(0, N'Виктория', N'Стоянова', N'Иванова', N'0645166058', (SELECT ID FROM CITIES WHERE CITY_NAME = N'София'), N'Ул 219 Бл 13'),
+	(0, N'Георги', N'ЛТодоров', N'Георгиев', N'0710295861', (SELECT ID FROM CITIES WHERE CITY_NAME = N'Пловдив'), N'Ул 439 Бл 51'),
+	(0, N'Мария', N'Йорданова', N'Димитрова', N'3610092716', (SELECT ID FROM CITIES WHERE CITY_NAME = N'Варна'), N'Ул 701 Бл 27'),
+	(0, N'Александра', N'Христова', N'Петрова', N'4305042590', (SELECT ID FROM CITIES WHERE CITY_NAME = N'Бургас'), N'Ул 631 Бл 74'),
+	(0, N'Габриела', N'Димитрова', N'Николаева', N'8706231476', (SELECT ID FROM CITIES WHERE CITY_NAME = N'Русе'), N'Ул 920 Бл 35'),
+	(0, N'Иван', N'Ангелов', N'Петров', N'0543315502', (SELECT ID FROM CITIES WHERE CITY_NAME = N'Стара Загора'), N'Ул 218 Бл 39'),
+	(0, N'Рая', N'Василева', N'Христова', N'2602214579', (SELECT ID FROM CITIES WHERE CITY_NAME = N'Плевен'), N'Ул 70 Бл 81'),
+	(0, N'Димитър', N'Атанасов', N'Стоянов', N'2703302641', (SELECT ID FROM CITIES WHERE CITY_NAME = N'Сливен'), N'Ул 787 Бл 93'),
+	(0, N'Йоана', N'Пламенова', N'Стоянова', N'6406087451', (SELECT ID FROM CITIES WHERE CITY_NAME = N'Добрич'), N'Ул 938 Бл 32'),
+	(0, N'Николай', N'Ивайлов', N'Петров', N'7903107786', (SELECT ID FROM CITIES WHERE CITY_NAME = N'Шумен'), N'Ул 273 Бл 5'),
+	(0, N'Тодор', N'Димитров', N'Петров', N'0303111360', (SELECT ID FROM CITIES WHERE CITY_NAME = N'Хасково'), N'Ул 13 Бл 59'),
+	(0, N'Борис', N'Петров', N'Димитров', N'3804193788', (SELECT ID FROM CITIES WHERE CITY_NAME = N'Пазарджик'), N'Ул 573 Бл 33'),
+	(0, N'Симона', N'Димитрова', N'Николова', N'4001141417', (SELECT ID FROM CITIES WHERE CITY_NAME = N'Благовеград'), N'Ул 145 Бл 95'),
+	(0, N'Виктор', N'Стефанов', N'Йорданов', N'5407217368', (SELECT ID FROM CITIES WHERE CITY_NAME = N'Ямбол'), N'Ул 606 Бл 35'),
+	(0, N'Йорданка', N'Стефанова', N'Величкова', N'8112205638', (SELECT ID FROM CITIES WHERE CITY_NAME = N'Перник'), N'Ул 676 Бл 54')
+
+	INSERT INTO [PHONE_NUMBERS] ( 
+	[UPDATE_COUNTER],
+	[PERSON_ID],
+	[PHONE_TYPE_ID],
+	[PHONE_NUMBER]
+)
+	VALUES
+	
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Виктория'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Мобилен'), N'+35927036263'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Георги'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Служебен'), N'+35961113373'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Мария'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Мобилен'), N'+35928455678'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Александра'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Служебен'), N'+35968534355'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Габриела'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Мобилен'), N'+35986783600'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Иван'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Служебен'), N'+35992054337'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Рая'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Мобилен'), N'+35959323301'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Димитър'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Служебен'), N'+35954356787'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Йоана'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Мобилен'), N'+35983177274'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Николай'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Служебен'), N'+35967420173'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Тодор'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Домашен'), N'02 663 414'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Борис'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Домашен'), N'097 343 83'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Симона'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Домашен'), N'02 0 42 74'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Виктор'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Домашен'), N'034 901 70'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Йорданка'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Домашен'), N'02 1 55 87'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Виктория'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Домашен'), N'062 303 666'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Георги'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Домашен'), N'02 725 758'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Мария'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Домашен'), N'02 5 03 39'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Александра'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Домашен'), N'02 000 415'),
+
+	(0, (SELECT ID FROM PERSONS WHERE FIRST_NAME = N'Габриела'),
+	(SELECT ID FROM PHONE_TYPES WHERE PHONE_TYPE = N'Домашен'), N'0436 024 29')
+
+	COMMIT TRANSACTION
+END TRY
+BEGIN CATCH
+	PRINT ERROR_MESSAGE()
+	ROLLBACK TRANSACTION
+END CATCH
+ELSE
+	BEGIN
+		PRINT N'Tables are not empty.'
+	END

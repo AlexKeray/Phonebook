@@ -1,0 +1,11 @@
+USE PHONEBOOK
+GO
+IF EXISTS(
+	SELECT *
+	FROM sys.views
+	WHERE name = N'ALL_DATA_VIEW'
+)
+	DROP VIEW ALL_DATA_VIEW
+ELSE
+	PRINT N'No such view found'
+GO
