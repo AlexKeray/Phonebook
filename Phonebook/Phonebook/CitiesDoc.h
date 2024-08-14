@@ -4,10 +4,15 @@
 
 
 #pragma once
-
+#include <vector>
+#include "City.h"
 
 class CCitiesDoc : public CDocument
 {
+// Members
+private:
+	std::vector<City> m_Cities;
+
 protected: // create from serialization only
 	CCitiesDoc() noexcept;
 	DECLARE_DYNCREATE(CCitiesDoc)

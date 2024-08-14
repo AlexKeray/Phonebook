@@ -11,6 +11,7 @@
 #endif
 
 #include "CitiesDoc.h"
+#include "CitiesTable.h"
 
 #include <propkey.h>
 
@@ -45,6 +46,8 @@ BOOL CCitiesDoc::OnNewDocument()
 
 	// TODO: add reinitialization code here
 	// (SDI documents will reuse this document)
+	CCitiesTable oCitiesTable;
+	oCitiesTable.loadCities(m_Cities);
 
 	return TRUE;
 }
