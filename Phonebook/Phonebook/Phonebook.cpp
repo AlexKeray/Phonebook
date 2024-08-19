@@ -9,9 +9,11 @@
 #include "Phonebook.h"
 #include "MainFrm.h"
 
+#include "DBConnection.h"
 #include "ChildFrm.h"
 #include "CitiesDoc.h"
 #include "CitiesView.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

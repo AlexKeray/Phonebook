@@ -176,12 +176,15 @@ void CLog::InitializeHResultMap()
 /// <param name="strMessage"> The error message.</param>
 /// <param name="file"> The name of the file where the error occured.</param>
 /// <param name="line"> The line at which the error occured.</param>
-void CLog::LogMessage(const CString& strMessage, const char* file, int line)
+void CLog::LogMessage(const CString& strMessage, const char* filePath, int line)
 {
+    CLog& logger = CLog::GetInstance();
     CW2A utf8Message(strMessage, CP_UTF8);
-    m_oLogFile << static_cast<const char*>(utf8Message) << "\n";
-    m_oLogFile << "File: " << file << "\t\tLine: " << line << "\n\n";
-    m_oLogFile.flush();
+    logger.m_oLogFile << static_cast<const char*>(utf8Message) << "\n";
+    const char* szFileName = getFileNameFromPath(filePath);
+    logger.m_oLogFile << "File: " << szFileName << "\t\tLine: " << line << "\n\n";
+    logger.m_oLogFile.flush();
+    delete[] szFileName;
 }
 
 /// <summary>
@@ -193,17 +196,53 @@ void CLog::LogMessage(const CString& strMessage, const char* file, int line)
 /// <param name="line"> The line at which the error occured.</param>
 void CLog::LogMessage(const CString& strMessage, const HRESULT& hResult, const char* filePath, int line)
 {
+    CLog& logger = CLog::GetInstance();
     CW2A utf8Message(strMessage, CP_UTF8);
-    m_oLogFile << static_cast<const char*>(utf8Message) << "\n";
-    auto it = oHResultMap.find(hResult);
-    if (it != oHResultMap.end())
+    logger.m_oLogFile << static_cast<const char*>(utf8Message) << "\n";
+    auto it = logger.oHResultMap.find(hResult);
+    if (it != logger.oHResultMap.end())
     {
-        m_oLogFile << "Error code: 0x" << std::hex << hResult << " (" << it->second << ")\n";
+        logger.m_oLogFile << "Error code: 0x" << std::hex << hResult << " (" << it->second << ")\n";
     }
     else
     {
-        m_oLogFile << "Error code: 0x" << std::hex << hResult << " (Unknown error)\n";
+        logger.m_oLogFile << "Error code: 0x" << std::hex << hResult << " (Unknown error)\n";
     }
-    m_oLogFile << "File: " << filePath << "\t\tLine: " << std::dec << line << "\n\n";
-    m_oLogFile.flush();
+    const char* szFileName = getFileNameFromPath(filePath);
+    logger.m_oLogFile << "File: " << szFileName << "\t\tLine: " << std::dec << line << "\n\n";
+    logger.m_oLogFile.flush();
+    delete[] szFileName;
+}
+
+/// <summary>
+/// Extracts only the file name from a file path.
+/// </summary>
+/// <param name="filePath"> Stores the file path. </param>
+/// <returns> Returns the file name. </returns>
+const char* CLog::getFileNameFromPath(const char* szFilePath)
+{
+    int iFileNameLastIndex = 0;
+    while (szFilePath[iFileNameLastIndex] != '\0')
+    {
+        iFileNameLastIndex++;
+    }
+    iFileNameLastIndex--;
+    int iFileNameFirstIndex = iFileNameLastIndex;
+    while (szFilePath[iFileNameFirstIndex] != '\\')
+    {
+        iFileNameFirstIndex--;
+    }
+    iFileNameFirstIndex++;
+
+    int nFileNameLength = iFileNameLastIndex - iFileNameFirstIndex + 1;
+
+    char* szFileName = new char[nFileNameLength + 1];
+
+    for (int i = 0; i < nFileNameLength; i++)
+    {
+        szFileName[i] = szFilePath[iFileNameFirstIndex + i];
+    }
+    szFileName[nFileNameLength] = '\0';
+
+    return szFileName;
 }

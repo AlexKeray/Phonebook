@@ -5,13 +5,6 @@ class CMessage
 {
 // Methods -----------------------------------------
 
-private:
-	/// <summary>
-	/// Extracts only the file name from a file path.
-	/// </summary>
-	/// <param name="filePath"> Stores the file path. </param>
-	/// <returns> Returns the file name. </returns>
-	static const char* getFileNameFromPath(const char* filePath);
 public:
 
 	/// <summary>

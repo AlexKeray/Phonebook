@@ -76,6 +76,13 @@ private:
     /// <param name="strPath"> Holds the path to the log file.</param>
     bool OpenLogFile(const CString& strPath);
 
+    /// <summary>
+    /// Extracts only the file name from a file path.
+    /// </summary>
+    /// <param name="filePath"> Stores the file path. </param>
+    /// <returns> Returns the file name. </returns>
+    static const char* getFileNameFromPath(const char* szFilePath);
+
 public:
 
     // Copy constructor ---------------------------------------------------------------
@@ -106,7 +113,7 @@ public:
     /// <param name="strMessage"> The error message.</param>
     /// <param name="file"> The name of the file where the error occured.</param>
     /// <param name="line"> The line at which the error occured.</param>
-    void LogMessage(const CString&, const char* file, int line);
+    static void LogMessage(const CString&, const char* file, int line);
 
     /// <summary>
     /// /// Stores error information in the log file. Also stores information about the hResult error code, the file and the line at whuch the error occured.
@@ -115,6 +122,7 @@ public:
     /// <param name="hResult"> The error code.</param>
     /// <param name="file"> The name of the file where the error occured.</param>
     /// <param name="line"> The line at which the error occured.</param>
-    void LogMessage(const CString&, const HRESULT& hResult, const char* file, int line);
+    static void LogMessage(const CString&, const HRESULT& hResult, const char* file, int line);
+
 };
 

@@ -37,6 +37,18 @@
     <Filter Include="Source Files\Utilities">
       <UniqueIdentifier>{3c133d18-a923-40b0-92ee-9ffe66f0f33c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Data">
+      <UniqueIdentifier>{12726c3b-a7c7-4c40-9140-bb3a082bb1ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Data\Cities">
+      <UniqueIdentifier>{dddb828c-7be8-4edf-ac91-417c475899d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Data">
+      <UniqueIdentifier>{863f6b45-9177-42b8-8f12-077a06e26893}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Data\Cities">
+      <UniqueIdentifier>{e358f528-4697-45ba-a300-f039271cb5a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CitiesDoc.h">
@@ -66,19 +78,22 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="City.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CitiesAccessor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CitiesTable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Log.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Message.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="CitiesAccessor.h">
+      <Filter>Header Files\Data\Cities</Filter>
+    </ClInclude>
+    <ClInclude Include="City.h">
+      <Filter>Header Files\Data\Cities</Filter>
+    </ClInclude>
+    <ClInclude Include="CitiesTable.h">
+      <Filter>Header Files\Data\Cities</Filter>
+    </ClInclude>
+    <ClInclude Include="DBConnection.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,13 +116,16 @@
     <ClCompile Include="Phonebook.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="CitiesTable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Log.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Message.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="CitiesTable.cpp">
+      <Filter>Source Files\Data\Cities</Filter>
+    </ClCompile>
+    <ClCompile Include="DBConnection.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
   </ItemGroup>

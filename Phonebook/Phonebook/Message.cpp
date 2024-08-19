@@ -20,10 +20,7 @@ void CMessage::Message(const CString& strMessage)
 void CMessage::ErrorMessage(const CString& strMessage, const char* filePath, int line)
 {
 	AfxMessageBox(strMessage, MB_OK | MB_ICONERROR, 0);
-	CLog& logger = CLog::GetInstance();
-	const char* szFileName = getFileNameFromPath(filePath);
-	logger.LogMessage(strMessage, szFileName, line);
-	delete[] szFileName;
+	CLog::LogMessage(strMessage, filePath, line);
 }
 
 /// <summary>
@@ -36,41 +33,5 @@ void CMessage::ErrorMessage(const CString& strMessage, const char* filePath, int
 void CMessage::ErrorMessage(const CString& strMessage, HRESULT hResult, const char* filePath, int line)
 {
 	AfxMessageBox(strMessage, MB_OK | MB_ICONERROR, 0);
-	CLog& logger = CLog::GetInstance();
-	const char* szFileName = getFileNameFromPath(filePath);
-	logger.LogMessage(strMessage, hResult, szFileName, line);
-	delete[] szFileName;
-}
-
-/// <summary>
-/// Extracts only the file name from a file path.
-/// </summary>
-/// <param name="filePath"> Stores the file path. </param>
-/// <returns> Returns the file name. </returns>
-const char* CMessage::getFileNameFromPath(const char* szFilePath)
-{
-	int iFileNameLastIndex = 0;
-	while (szFilePath[iFileNameLastIndex] != '\0')
-	{
-		iFileNameLastIndex++;
-	}
-	iFileNameLastIndex--;
-	int iFileNameFirstIndex = iFileNameLastIndex;
-	while (szFilePath[iFileNameFirstIndex] != '\\')
-	{
-		iFileNameFirstIndex--;
-	}
-	iFileNameFirstIndex++;
-	
-	int nFileNameLength = iFileNameLastIndex - iFileNameFirstIndex + 1;
-	
-	char* szFileName = new char[nFileNameLength + 1];
-
-	for (int i = 0; i < nFileNameLength; i++)
-	{
-		szFileName[i] = szFilePath[iFileNameFirstIndex + i];
-	}
-	szFileName[nFileNameLength] = '\0';
-
-	return szFileName;
+	CLog::LogMessage(strMessage, hResult, filePath, line);
 }

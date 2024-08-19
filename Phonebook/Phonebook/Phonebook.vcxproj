@@ -193,6 +193,7 @@
     <ClInclude Include="CitiesTable.h" />
     <ClInclude Include="CitiesView.h" />
     <ClInclude Include="City.h" />
+    <ClInclude Include="DBConnection.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="MainFrm.h" />
@@ -207,6 +208,7 @@
     <ClCompile Include="CitiesDoc.cpp" />
     <ClCompile Include="CitiesTable.cpp" />
     <ClCompile Include="CitiesView.cpp" />
+    <ClCompile Include="DBConnection.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Message.cpp" />
