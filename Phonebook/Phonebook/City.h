@@ -7,6 +7,6 @@ struct City
 {
 	int lId{};
 	int lUpdateCounter{};
-	wchar_t szCityName[64]{};
-	wchar_t szCityArea[64]{};
+	TCHAR szCityName[64]{}; // TCHAR is a typedef that resolves to char in ANSI builds and wchar_t in Unicode builds.
+	TCHAR szCityArea[64]{};
 };

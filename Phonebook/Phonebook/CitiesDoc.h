@@ -11,11 +11,15 @@ class CCitiesDoc : public CDocument
 {
 // Members
 private:
-	std::vector<City> m_Cities;
+	std::vector<City> m_CitiesVector;
+
+// Methods
+private:
 
 protected: // create from serialization only
+// Constructors
 	CCitiesDoc() noexcept;
-	DECLARE_DYNCREATE(CCitiesDoc)
+	DECLARE_DYNCREATE(CCitiesDoc) // supports dynamic creation
 
 // Attributes
 public:
