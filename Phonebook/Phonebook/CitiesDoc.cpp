@@ -1,4 +1,4 @@
-
+﻿
 // CitiesDoc.cpp : implementation of the CCitiesDoc class
 //
 
@@ -47,20 +47,10 @@ BOOL CCitiesDoc::OnNewDocument()
 
 	// TODO: add reinitialization code here
 	// (SDI documents will reuse this document)
-	CCitiesTable oCitiesTable;
-	if (!oCitiesTable.SelectWhereID(3, m_Cities))
-	{
-		CString errorMessage;
-		errorMessage.Format(_T("Couldn't select the record with ID = %d"), 3);
-		CMessage::ErrorMessage(errorMessage, __FILE__, __LINE__);
-		return FALSE;
-	}
+
 
 	return TRUE;
 }
-
-
-
 
 // CCitiesDoc serialization
 

@@ -1,11 +1,1 @@
-Unable to connect to SQL server database.
-Error code: 0x80004005 (E_FAIL)
-File: DBConnection.cpp		Line: 23
-
-Unable to create Session.
-Error code: 0x8000ffff (Unknown error)
-File: CitiesTable.cpp		Line: 106
-
-Couldn't select the record with ID = 3
-File: CitiesDoc.cpp		Line: 55
 
