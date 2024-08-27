@@ -13,6 +13,7 @@
 #include "CitiesDoc.h"
 #include "CitiesTable.h"
 #include "Message.h"
+#include "CitiesData.h"
 
 #include <propkey.h>
 
@@ -47,9 +48,19 @@ BOOL CCitiesDoc::OnNewDocument()
 
 	// TODO: add reinitialization code here
 	// (SDI documents will reuse this document)
-
+	CCitiesData oCitiesData;
+	if (!oCitiesData.SelectAll(m_CitiesMap))
+	{
+		return FALSE;
+	}
 
 	return TRUE;
+}
+
+// Methods
+std::map<CString, City>& CCitiesDoc::GetDocumentMap()
+{
+	return m_CitiesMap;
 }
 
 // CCitiesDoc serialization

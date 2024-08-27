@@ -6,15 +6,17 @@
 #pragma once
 #include <vector>
 #include "City.h"
+#include <map>
 
 class CCitiesDoc : public CDocument
 {
 // Members
 private:
-	std::vector<City> m_CitiesVector;
+	std::map<CString, City> m_CitiesMap;
 
 // Methods
-private:
+public:
+	std::map<CString, City>& GetDocumentMap();
 
 protected: // create from serialization only
 // Constructors

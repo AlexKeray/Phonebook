@@ -5,25 +5,16 @@
 #include "Message.h" // For displaying Messages to the GUI
 #include "Log.h" // For logging error info into a log file
 #include "DBConnection.h"
+#include <map>
 
 /// <summary>
 /// Loads all records from the Cities database table into a collection.
 /// </summary>
 /// <param name="oCitiesArray"> Collection from the document class</param>
 /// <returns> Integer that tells if the method was successfull. </returns>
-BOOL CCitiesTable::SelectAll(std::vector<City>& oCitiesVec)
+BOOL CCitiesTable::SelectAll(CSession& oSession, std::map<CString, City>& oCitiesMap)
 {
 	HRESULT hResult;
-	CSession oSession;
-	CDataSource& oDataSource = CDBConnection::GetInstance().GetDataSource();
-
-	// Opens a session.
-	hResult = oSession.Open(oDataSource);
-	if (FAILED(hResult))
-	{
-		CLog::LogMessage(_T("Unable to create Session."), hResult, __FILE__, __LINE__);
-		return FALSE;
-	}
 
 	CString strQuery = _T("SELECT * FROM CITIES");
 
@@ -39,7 +30,8 @@ BOOL CCitiesTable::SelectAll(std::vector<City>& oCitiesVec)
 	// Iterating trough the rowset
 	while (MoveNext() == S_OK)
 	{
-		oCitiesVec.push_back(m_recCity);
+		CString key = CString(m_recCity.szCityName) + CString(m_recCity.szCityArea);
+		oCitiesMap[key] = m_recCity;
 	}
 
 	Close();

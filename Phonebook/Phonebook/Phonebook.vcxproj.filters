@@ -96,6 +96,9 @@
     <ClInclude Include="DBConnection.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="CitiesData.h">
+      <Filter>Header Files\Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CitiesView.cpp">
@@ -127,6 +130,9 @@
     </ClCompile>
     <ClCompile Include="DBConnection.cpp">
       <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="CitiesData.cpp">
+      <Filter>Source Files\Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

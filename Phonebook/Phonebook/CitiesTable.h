@@ -1,6 +1,7 @@
 #pragma once
 #include "CitiesAccessor.h"
 #include <vector>
+#include <map>
 
 class CCitiesTable : private CCommand<CAccessor<CCitiiesAccessor>>
 {
@@ -12,7 +13,7 @@ public:
 	/// </summary>
 	/// <param name="oCitiesArray"> Collection from the document class</param>
 	/// <returns> Integer that tells if the method was successfull. </returns>
-	BOOL SelectAll(std::vector<City>& oCitiesVec);
+	BOOL SelectAll(CSession& oSession, std::map<CString, City>& oCitiesMap);
 
 	/// <summary>
 	/// Selects one record by ID from the City table.

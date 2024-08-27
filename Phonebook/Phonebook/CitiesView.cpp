@@ -12,6 +12,8 @@
 
 #include "CitiesDoc.h"
 #include "CitiesView.h"
+#include "Log.h"
+#include "Message.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -54,6 +56,27 @@ void CCitiesView::OnInitialUpdate()
 
 	// TODO: You may populate your ListView with items by directly accessing
 	//  its list control through a call to GetListCtrl().
+
+
+	CListCtrl& oListCtrl = GetListCtrl();
+
+	oListCtrl.ModifyStyle(0, LVS_REPORT | LVS_SINGLESEL);
+	oListCtrl.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
+
+	CreateColumns(oListCtrl, 2);
+
+	m_pCitiesDocument = GetDocument();
+	std::map<CString, City>& oCitiesMap = m_pCitiesDocument->GetDocumentMap();
+
+	if (!PopulateListCtrl(oListCtrl, oCitiesMap))
+	{
+		CMessage::ErrorMessage(_T("Loading data from the document failed."), __FILE__, __LINE__);
+	}
+
+	if (!SetColumnsWidth(oListCtrl))
+	{
+		CLog::LogMessage(_T("Setting the columns width of the CCitiesView failed."), __FILE__, __LINE__);
+	}
 }
 
 void CCitiesView::OnRButtonUp(UINT /* nFlags */, CPoint point)
@@ -92,3 +115,66 @@ CCitiesDoc* CCitiesView::GetDocument() const // non-debug version is inline
 
 
 // CCitiesView message handlers
+
+// Methods
+
+void CCitiesView::CreateColumns(CListCtrl& oListCtrl, int nColumnCount)
+{
+	m_nColumnCount = 2;
+
+	oListCtrl.InsertColumn(0, _T("City name    "), LVCFMT_LEFT);
+	oListCtrl.InsertColumn(1, _T("Area         "), LVCFMT_LEFT);
+}
+
+BOOL CCitiesView::SetColumnsWidth(CListCtrl& oListCtrl, int nRightPadding)
+{
+	// Autosize columns based on the longest item or the header
+	for (int nColumnIndex = 0; nColumnIndex < m_nColumnCount; ++nColumnIndex)
+	{
+		if (!oListCtrl.SetColumnWidth(nColumnIndex, LVSCW_AUTOSIZE))
+		{
+			return FALSE;
+		}
+		int nColumnAutosizeWidth = oListCtrl.GetColumnWidth(nColumnIndex);
+		if (!oListCtrl.SetColumnWidth(nColumnIndex, LVSCW_AUTOSIZE_USEHEADER))
+		{
+			return FALSE;
+		}
+		int nHeaderAutosizeWidth = oListCtrl.GetColumnWidth(nColumnIndex);
+		if (nColumnAutosizeWidth > nHeaderAutosizeWidth)
+		{
+			if (!oListCtrl.SetColumnWidth(nColumnIndex, nColumnAutosizeWidth + nRightPadding))
+			{
+				return FALSE;
+			}
+		}
+		else
+		{
+			if (!oListCtrl.SetColumnWidth(nColumnIndex, nHeaderAutosizeWidth + nRightPadding))
+			{
+				return FALSE;
+			}
+		}
+	}
+}
+
+BOOL CCitiesView::PopulateListCtrl(CListCtrl& oListCtrl, std::map<CString, City>& oCitiesMap)
+{
+	int i = 0;
+	int nItemIndex = 0;
+	for (std::map<CString, City>::iterator it = oCitiesMap.begin(); it != oCitiesMap.end(); ++it)
+	{
+		nItemIndex = oListCtrl.InsertItem(i, it->second.szCityName);
+		if (!oListCtrl.SetItemText(nItemIndex, 1, it->second.szCityArea))
+		{
+			return FALSE;
+		}
+		if (!oListCtrl.SetItemData(nItemIndex, static_cast<DWORD_PTR>(it->second.lId)))
+		{
+			return FALSE;
+		}
+		++i;
+	}
+
+	return TRUE;
+}
