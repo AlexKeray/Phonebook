@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "DBConnection.h"
 #include "Message.h"
+#include "Log.h"
 
 CDBConnection::CDBConnection()
 {
@@ -20,7 +21,8 @@ CDBConnection::CDBConnection()
 	 HRESULT hResult = oDataSource.Open(_T("SQLOLEDB.1"), &oDBPropSet);
 	if (FAILED(hResult))
 	{
-		CMessage::ErrorMessage(_T("Unable to connect to SQL server database."), hResult, __FILE__, __LINE__);
+		CMessage::Message(_T("Unable to connect to SQL server database."), CMessageDlg::Mode::Error);
+		CLog::Message(CLog::Mode::Error, LOG_CONTEXT, hResult, _T("Unable to connect to SQL server database."));
 	}
 	else
 	{

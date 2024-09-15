@@ -5,11 +5,22 @@
 #include <windows.h> // For GetModuleFileName
 #include <unordered_map> // For linking hResult error codes to their names
 
+// Macros ---------------------------------------------------------------
+/// <summary> Stores information about the name of the function, the file and the line at which the error occured. </summary>
+#define LOG_CONTEXT __FUNCTION__, __FILE__, __LINE__
+
 /// <summary>
 /// Stores information about errors in a txt file. The class usess the Singleton design pattern. Lazy initialization is used, which means a instance will be created not when the application starts but when GetInstance() is clled for the first time.
 /// </summary>
 class CLog
 {
+    // Enums ---------------------------------------------------------------
+public:
+    enum class Mode { Info, Warning, Error };
+
+
+
+
     // Members ---------------------------------------------------------------
 private:
 
@@ -108,21 +119,21 @@ public:
 
 
     /// <summary>
-    /// Stores error information in the log file. Also stores information about the file and the line at whuch the error occured.
+    /// Stores error information in the log file. Also stores information about the file and the line at which the error occured.
     /// </summary>
     /// <param name="strMessage"> The error message.</param>
     /// <param name="file"> The name of the file where the error occured.</param>
     /// <param name="line"> The line at which the error occured.</param>
-    static void LogMessage(const CString&, const char* file, int line);
+    static void Message(CLog::Mode enMode, const char* pszFunctionName, const char* pszFilePath, int nLine, const CString& strMessage = _T(""));
 
     /// <summary>
-    /// /// Stores error information in the log file. Also stores information about the hResult error code, the file and the line at whuch the error occured.
+    /// Stores error information in the log file. Also stores information about the hResult error code, the file and the line at which the error occured.
     /// </summary>
     /// <param name="strMessage"> The error message.</param>
     /// <param name="hResult"> The error code.</param>
     /// <param name="file"> The name of the file where the error occured.</param>
     /// <param name="line"> The line at which the error occured.</param>
-    static void LogMessage(const CString&, const HRESULT& hResult, const char* file, int line);
+    static void Message(CLog::Mode enMode, const char* pszFunctionName, const char* pszFilePath, int nLine, const HRESULT& hResult, const CString& strMessage = _T(""));
 
 };
 

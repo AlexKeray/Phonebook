@@ -187,24 +187,33 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CitiesDlg.h" />
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="CitiesAccessor.h" />
+    <ClInclude Include="CitiesData.h" />
     <ClInclude Include="CitiesDoc.h" />
     <ClInclude Include="CitiesTable.h" />
     <ClInclude Include="CitiesView.h" />
     <ClInclude Include="City.h" />
+    <ClInclude Include="CityDeleteHintWrapper.h" />
+    <ClInclude Include="CityInsertHintWrapper.h" />
+    <ClInclude Include="CItyUpdateHintWrapper.h" />
     <ClInclude Include="DBConnection.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Hints.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Message.h" />
+    <ClInclude Include="MessageDlg.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Phonebook.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CitiesDlg.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
+    <ClCompile Include="CitiesData.cpp" />
     <ClCompile Include="CitiesDoc.cpp" />
     <ClCompile Include="CitiesTable.cpp" />
     <ClCompile Include="CitiesView.cpp" />
@@ -212,6 +221,7 @@
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Message.cpp" />
+    <ClCompile Include="MessageDlg.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -224,6 +234,13 @@
     <ResourceCompile Include="Phonebook.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\Cancel_32.ico" />
+    <Image Include="..\..\..\Info_32.ico" />
+    <Image Include="..\..\..\question_32.ico" />
+    <Image Include="..\..\..\Success_32.ico" />
+    <Image Include="..\..\..\Success_40973.ico" />
+    <Image Include="..\..\..\Warning_32.ico" />
+    <Image Include="res\icon1.ico" />
     <Image Include="res\Phonebook.ico" />
     <Image Include="res\PhonebookDoc.ico" />
     <Image Include="res\Toolbar.bmp" />

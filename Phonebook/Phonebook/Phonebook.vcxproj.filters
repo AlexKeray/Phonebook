@@ -40,14 +40,26 @@
     <Filter Include="Source Files\Data">
       <UniqueIdentifier>{12726c3b-a7c7-4c40-9140-bb3a082bb1ee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Data\Cities">
-      <UniqueIdentifier>{dddb828c-7be8-4edf-ac91-417c475899d4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Data">
       <UniqueIdentifier>{863f6b45-9177-42b8-8f12-077a06e26893}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Data\Cities">
+    <Filter Include="Source Files\Table">
+      <UniqueIdentifier>{83ff7680-1112-407e-b900-29c4e3935051}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Table">
+      <UniqueIdentifier>{0e62dbac-d0d6-4ae8-8fa3-c3f39bd1b7f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Table\Cities">
       <UniqueIdentifier>{e358f528-4697-45ba-a300-f039271cb5a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities\Hints">
+      <UniqueIdentifier>{1e098f02-aa5d-4875-9652-534e6061f2d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Dialogs">
+      <UniqueIdentifier>{b7cea67f-cbd0-4e8a-9ff3-a9b667cb6aec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Dialogs">
+      <UniqueIdentifier>{29824c25-7f37-479b-8142-2abe2a0893e7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -85,16 +97,37 @@
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="CitiesAccessor.h">
-      <Filter>Header Files\Data\Cities</Filter>
+      <Filter>Header Files\Table\Cities</Filter>
     </ClInclude>
     <ClInclude Include="City.h">
-      <Filter>Header Files\Data\Cities</Filter>
+      <Filter>Header Files\Table\Cities</Filter>
     </ClInclude>
     <ClInclude Include="CitiesTable.h">
-      <Filter>Header Files\Data\Cities</Filter>
+      <Filter>Header Files\Table\Cities</Filter>
     </ClInclude>
     <ClInclude Include="DBConnection.h">
       <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="CitiesData.h">
+      <Filter>Header Files\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="CityDeleteHintWrapper.h">
+      <Filter>Header Files\Utilities\Hints</Filter>
+    </ClInclude>
+    <ClInclude Include="CityInsertHintWrapper.h">
+      <Filter>Header Files\Utilities\Hints</Filter>
+    </ClInclude>
+    <ClInclude Include="CItyUpdateHintWrapper.h">
+      <Filter>Header Files\Utilities\Hints</Filter>
+    </ClInclude>
+    <ClInclude Include="Hints.h">
+      <Filter>Header Files\Utilities\Hints</Filter>
+    </ClInclude>
+    <ClInclude Include="CitiesDlg.h">
+      <Filter>Header Files\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageDlg.h">
+      <Filter>Header Files\Dialogs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -122,11 +155,20 @@
     <ClCompile Include="Message.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="CitiesTable.cpp">
-      <Filter>Source Files\Data\Cities</Filter>
-    </ClCompile>
     <ClCompile Include="DBConnection.cpp">
       <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="CitiesData.cpp">
+      <Filter>Source Files\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="CitiesTable.cpp">
+      <Filter>Source Files\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="CitiesDlg.cpp">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageDlg.cpp">
+      <Filter>Source Files\Dialogs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +190,27 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Toolbar256.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\Success_40973.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\Success_32.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\Warning_32.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\Cancel_32.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\Info_32.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\question_32.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

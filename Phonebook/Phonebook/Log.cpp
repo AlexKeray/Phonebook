@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <atlbase.h>
+#include <iomanip>
 
 CLog::CLog()
 {
@@ -171,53 +172,108 @@ void CLog::InitializeHResultMap()
 }
 
 /// <summary>
-/// Stores error information in the log file. Also stores information about the file and the line at whuch the error occured.
+/// Stores error information in the log file. Also stores information about the file and the nLine at which the error occured.
 /// </summary>
 /// <param name="strMessage"> The error message.</param>
 /// <param name="file"> The name of the file where the error occured.</param>
-/// <param name="line"> The line at which the error occured.</param>
-void CLog::LogMessage(const CString& strMessage, const char* filePath, int line)
+/// <param name="nLine"> The nLine at which the error occured.</param>
+void CLog::Message(CLog::Mode enMode, const char* pszFunctionName, const char* pszFilePath, int nLine, const CString& strMessage)
 {
     CLog& logger = CLog::GetInstance();
-    CW2A utf8Message(strMessage, CP_UTF8);
-    logger.m_oLogFile << static_cast<const char*>(utf8Message) << "\n";
-    const char* szFileName = getFileNameFromPath(filePath);
-    logger.m_oLogFile << "File: " << szFileName << "\t\tLine: " << line << "\n\n";
+    char* pszMode = nullptr;
+    switch (enMode)
+    {
+        case CLog::Mode::Error:
+			pszMode = "Error";
+			break;
+        case CLog::Mode::Warning:
+            pszMode = "Warning";
+            break;
+        case CLog::Mode::Info:
+            pszMode = "Info";
+            break;
+    }
+
+    const char* pszFileName = getFileNameFromPath(pszFilePath);
+    logger.m_oLogFile << "Type: " << pszMode << "\t" << "Function: " << pszFunctionName << "\t" << "File: " << pszFileName << "\t" << "Line: " << nLine << "\t";
+    
+    if (!strMessage.IsEmpty())
+    {
+        CW2A utf8Message(strMessage, CP_UTF8);
+        logger.m_oLogFile << "Message: " << static_cast<const char*>(utf8Message);
+    }
+
+    logger.m_oLogFile << "\n";
+
     logger.m_oLogFile.flush();
-    delete[] szFileName;
+    delete[] pszFileName;
 }
 
 /// <summary>
-/// /// Stores error information in the log file. Also stores information about the hResult error code, the file and the line at whuch the error occured.
+/// /// Stores error information in the log file. Also stores information about the hResult error code, the file and the nLine at which the error occured.
 /// </summary>
 /// <param name="strMessage"> The error message.</param>
 /// <param name="hResult"> The error code.</param>
 /// <param name="file"> The name of the file where the error occured.</param>
-/// <param name="line"> The line at which the error occured.</param>
-void CLog::LogMessage(const CString& strMessage, const HRESULT& hResult, const char* filePath, int line)
+/// <param name="nLine"> The nLine at which the error occured.</param>
+void CLog::Message(CLog::Mode enMode, const char* pszFunctionName, const char* pszFilePath, int nLine, const HRESULT& hResult, const CString& strMessage)
 {
     CLog& logger = CLog::GetInstance();
-    CW2A utf8Message(strMessage, CP_UTF8);
-    logger.m_oLogFile << static_cast<const char*>(utf8Message) << "\n";
+    const char* pszMode = nullptr;
+    switch (enMode)
+    {
+    case CLog::Mode::Error:
+        pszMode = "Error";
+        break;
+    case CLog::Mode::Warning:
+        pszMode = "Warning";
+        break;
+    case CLog::Mode::Info:
+        pszMode = "Info";
+        break;
+    }
+    const char* pszFileName = getFileNameFromPath(pszFilePath);
+
+    std::string pszHResultDescription = "";
     auto it = logger.oHResultMap.find(hResult);
     if (it != logger.oHResultMap.end())
     {
-        logger.m_oLogFile << "Error code: 0x" << std::hex << hResult << " (" << it->second << ")\n";
+        pszHResultDescription = "(" + it->second + ")";
     }
     else
     {
-        logger.m_oLogFile << "Error code: 0x" << std::hex << hResult << " (Unknown error)\n";
+        pszHResultDescription = "(Unknown error)";
     }
-    const char* szFileName = getFileNameFromPath(filePath);
-    logger.m_oLogFile << "File: " << szFileName << "\t\tLine: " << std::dec << line << "\n\n";
+
+    if (!strMessage.IsEmpty())
+    {
+        CW2A utf8Message(strMessage, CP_UTF8);
+        logger.m_oLogFile << std::left 
+            << std::setw(6) << "Type: " << std::setw(8) << pszMode
+            << std::setw(10) << "Function: " << std::setw(30) << pszFunctionName
+            << std::setw(6) << "File: " << std::setw(16) << pszFileName
+            << std::setw(6) << "Line: " << std::setw(6) << nLine
+            << std::setw(12) << "Error code: " << std::setw(2)<< "0x" <<std::setw(10)<< std::hex << hResult << std::setw(20) << pszHResultDescription 
+            << std::setw(9)<< "Message: " << std::setw(36)<< static_cast<const char*>(utf8Message);
+    }
+    else
+    {
+        logger.m_oLogFile << std::left << std::setw(10) << "Type: " << std::setw(10) << pszMode
+            << std::setw(15) << "Function: " << std::setw(30) << pszFunctionName
+            << std::setw(10) << "File: " << std::setw(20) << pszFileName
+            << std::setw(10) << "Line: " << std::setw(5) << nLine
+            << std::setw(15) << "Error code: " << std::setw(2) << "0x" << std::setw(10) << std::hex << hResult << std::setw(20) << pszHResultDescription;
+    }
+
+    logger.m_oLogFile << "\n";
     logger.m_oLogFile.flush();
-    delete[] szFileName;
+    delete[] pszFileName;
 }
 
 /// <summary>
 /// Extracts only the file name from a file path.
 /// </summary>
-/// <param name="filePath"> Stores the file path. </param>
+/// <param name="pszFilePath"> Stores the file path. </param>
 /// <returns> Returns the file name. </returns>
 const char* CLog::getFileNameFromPath(const char* szFilePath)
 {
