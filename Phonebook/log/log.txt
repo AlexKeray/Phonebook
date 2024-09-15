@@ -1,1 +1,2 @@
-
+Type: Error   Function: CDBConnection::CDBConnection  File: DBConnection.cppLine: 25    Error code: 0x80004005  (E_FAIL)            Message: Unable to connect to SQL server database.
+Type: Error   Function: CCitiesData::SelectAll        File: CitiesData.cpp  Line: 14    Error code: 0x8000ffff  (Unknown error)     Message: Unable to create Session.           
