@@ -95,8 +95,6 @@ public:
 	afx_msg void OnAfxIdpCommandFailure();
 
 // Methods
-
-
 private:
 
 	/// <summary>

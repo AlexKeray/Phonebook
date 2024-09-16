@@ -52,8 +52,6 @@ BOOL CCitiesDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-
-
 	switch (m_enRecordUpdateStatus)
 	{
 	case CCitiesDlg::RecordUpdateStatus::UpToDate:

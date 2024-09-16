@@ -110,7 +110,7 @@ void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 		}
 
 		// Handles which item appears selected (have blue background).
-		if (rListCtrl.SetItemState(nItemIndex, 0, LVIS_SELECTED | LVIS_FOCUSED))
+		if (!rListCtrl.SetItemState(nItemIndex, 0, LVIS_SELECTED | LVIS_FOCUSED))
 		{
 			CLog::Message(CLog::Mode::Error, LOG_CONTEXT, _T("OnUpdate: SetItemState"));
 		}
@@ -153,7 +153,11 @@ void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 		}
 
 		// Handles which item appears selected (have blue background).
-		rListCtrl.SetItemState(nItemIndex, LVIS_FOCUSED | LVIS_SELECTED, LVIS_FOCUSED | LVIS_SELECTED);
+		if (!rListCtrl.SetItemState(nItemIndex, LVIS_FOCUSED | LVIS_SELECTED, LVIS_FOCUSED | LVIS_SELECTED))
+		{
+			CLog::Message(CLog::Mode::Error, LOG_CONTEXT);
+			return;
+		}
 
 	}
 
@@ -177,7 +181,7 @@ void CCitiesView::OnInitialUpdate()
 
 	if (!CreateColumns(rListCtrl, 2))
 	{
-		CMessage::Message(_T("Cant load the view."), CMessageDlg::Mode::Error);
+		CMessage::Message(_T("Can't load the view."), CMessageDlg::Mode::Error);
 		CLog::Message(CLog::Mode::Error, LOG_CONTEXT, _T("CreateColumns failed"));
 		return;
 	}
@@ -302,7 +306,7 @@ void CCitiesView::OnContextOptionView()
 		return;
 	}
 
-	if (m_pCitiesDocument->SelectContainerItemByIndex(nCListCtrlSelectedItemIndex, oCity))
+	if (!m_pCitiesDocument->SelectContainerItemByIndex(nCListCtrlSelectedItemIndex, oCity))
 	{
 		CMessage::Message(_T("Can't open item for view. The record is missing."), CMessageDlg::Mode::Error);
 		CLog::Message(CLog::Mode::Error, LOG_CONTEXT);
@@ -319,7 +323,7 @@ void CCitiesView::OnContextOptionView()
 
 	if (enResult == ValidateRecordVersionResult::RECORD_NOT_FOUND)
 	{
-		if (HandleRecordNotFound(oCity, nCListCtrlSelectedItemIndex))
+		if (!HandleRecordNotFound(oCity, nCListCtrlSelectedItemIndex))
 		{
 			CMessage::Message(_T("Can't remove the record."), CMessageDlg::Mode::Information);
 			CLog::Message(CLog::Mode::Error, LOG_CONTEXT);
@@ -354,7 +358,7 @@ void CCitiesView::OnContextOptionChange()
 		CLog::Message(CLog::Mode::Error, LOG_CONTEXT);
 		return;
 	}
-	if (m_pCitiesDocument->SelectContainerItemByIndex(nCListCtrlSelectedItemIndex, oCity))
+	if (!m_pCitiesDocument->SelectContainerItemByIndex(nCListCtrlSelectedItemIndex, oCity))
 	{
 		CMessage::Message(_T("Can't open item for change. The record is missing."), CMessageDlg::Mode::Error);
 		CLog::Message(CLog::Mode::Error, LOG_CONTEXT);
@@ -442,7 +446,7 @@ void CCitiesView::OnContextOptionRemove()
 		return;
 	}
 
-	if (m_pCitiesDocument->SelectContainerItemByIndex(nCListCtrlSelectedItemIndex, oCity))
+	if (!m_pCitiesDocument->SelectContainerItemByIndex(nCListCtrlSelectedItemIndex, oCity))
 	{
 		CMessage::Message(_T("Can't open item for change. The record is missing."), CMessageDlg::Mode::Error);
 		CLog::Message(CLog::Mode::Error, LOG_CONTEXT);
@@ -485,18 +489,19 @@ void CCitiesView::OnContextOptionRemove()
 	CString strMessage;
 	strMessage.Format(_T("Are you sure you want to delete the city: %s %s"), oCity.szCityName, oCity.szCityArea);
 
-	if (CMessage::Message(strMessage, CMessageDlg::Mode::Question) == IDNO)
+	if (CMessage::Message(strMessage, CMessageDlg::Mode::Question) == IDCANCEL)
 	{
 		return;
 	}
 
-	if (m_pCitiesDocument->DeleteRecordInDatabaseAndContainer(nCListCtrlSelectedItemIndex, oCity))
+	if (!m_pCitiesDocument->DeleteRecordInDatabaseAndContainer(nCListCtrlSelectedItemIndex, oCity))
 	{
 		CMessage::Message(_T("Can't remove the record."), CMessageDlg::Mode::Error);
 		CLog::Message(CLog::Mode::Error, LOG_CONTEXT);
 		return;
 	}
 
+	return;
 }
 
 void CCitiesView::OnAfxIdpCommandFailure()
@@ -557,7 +562,7 @@ bool CCitiesView::HandleRecordNotFound(City& rCity, int nCListCtrlSelectedItemIn
 		return true;
 	}
 
-	if (m_pCitiesDocument->DeleteContainerItemByIndex(nCListCtrlSelectedItemIndex))
+	if (!m_pCitiesDocument->DeleteContainerItemByIndex(nCListCtrlSelectedItemIndex))
 	{
 		CLog::Message(CLog::Mode::Error, LOG_CONTEXT);
 		return false;

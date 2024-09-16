@@ -1,2 +1,21 @@
-Type: Error   Function: CDBConnection::CDBConnection  File: DBConnection.cppLine: 25    Error code: 0x80004005  (E_FAIL)            Message: Unable to connect to SQL server database.
-Type: Error   Function: CCitiesData::SelectAll        File: CitiesData.cpp  Line: 14    Error code: 0x8000ffff  (Unknown error)     Message: Unable to create Session.           
+Type: Error   Function: CCitiesTable::SelectWhereID   File: CitiesTable.cpp Line: 69    Error code: 0x40ec6     (Unknown error)     Message: No record found - "SELECT * FROM CITIES WHERE ID=%d".
+Type: Error   Function: CCitiesTable::SelectWhereID   File: CitiesTable.cpp Line: 45    Error code: 0x40ec6     (Unknown error)     Message: No record found - "SELECT * FROM CITIES WHERE ID=%d".
+Type: Error   Function: CCitiesTable::SelectWhereID   File: CitiesTable.cpp Line: 45    Error code: 0x40ec6     (Unknown error)     Message: No record found - "SELECT * FROM CITIES WHERE ID=%d".
+Type: Error   Function: CCitiesTable::DeleteWhereID   File: CitiesTable.cpp Line: 138   Error code: 0x80040e21  (DB_E_ERRORSOCCURRED)Message: Unable to delete the record with ID: 1
+Type: Error   Function: CCitiesData::DeleteRecordFromDatabaseByIdFile: CitiesData.cpp  Line: 7c    Error code: 0x0         (Unknown error)     Message: Unable to delete the record with id: 1
+Type: Error	Function: CCitiesDoc::DeleteRecordInDatabaseAndContainer	File: CitiesDoc.cpp	Line: 71	Message: Unable to delete the record with id 1
+Type: Error	Function: CCitiesView::OnContextOptionRemove	File: CitiesView.cpp	Line: 1f4	
+Type: Error   Function: CCitiesTable::DeleteWhereID   File: CitiesTable.cpp Line: 138   Error code: 0x80040e21  (DB_E_ERRORSOCCURRED)Message: Unable to delete the record with ID: 15
+Type: Error   Function: CCitiesData::DeleteRecordFromDatabaseByIdFile: CitiesData.cpp  Line: 7c    Error code: 0x0         (Unknown error)     Message: Unable to delete the record with id: 15
+Type: Error	Function: CCitiesDoc::DeleteRecordInDatabaseAndContainer	File: CitiesDoc.cpp	Line: 71	Message: Unable to delete the record with id 15
+Type: Error	Function: CCitiesView::OnContextOptionRemove	File: CitiesView.cpp	Line: 1f4	
+Type: Error   Function: CCitiesTable::DeleteWhereID   File: CitiesTable.cpp Line: 138   Error code: 0x80040e21  (DB_E_ERRORSOCCURRED)Message: Unable to delete the record with ID: 15
+Type: Error   Function: CCitiesData::DeleteRecordFromDatabaseByIdFile: CitiesData.cpp  Line: 7c    Error code: 0x0         (Unknown error)     Message: Unable to delete the record with id: 15
+Type: Error	Function: CCitiesDoc::DeleteRecordInDatabaseAndContainer	File: CitiesDoc.cpp	Line: 71	Message: Unable to delete the record with id 15
+Type: Error	Function: CCitiesView::OnContextOptionRemove	File: CitiesView.cpp	Line: 1f4	
+Type: Error   Function: CPersonsTable::SelectWhereID  File: PersonsTable.cppLine: 3c    Error code: 0x40ec6     (Unknown error)     Message: No record found - "SELECT * FROM CITIES WHERE ID=%d".
+Type: Error   Function: CCitiesTable::SelectWhereID   File: CitiesTable.cpp Line: 45    Error code: 0x40ec6     (Unknown error)     Message: No record found - "SELECT * FROM CITIES WHERE ID=%d".
+Type: Error   Function: CCitiesTable::DeleteWhereID   File: CitiesTable.cpp Line: 138   Error code: 0x80040e21  (DB_E_ERRORSOCCURRED)Message: Unable to delete the record with ID: 1
+Type: Error   Function: CCitiesData::DeleteRecordFromDatabaseByIdFile: CitiesData.cpp  Line: 7c    Error code: 0x0         (Unknown error)     Message: Unable to delete the record with id: 1
+Type: Error	Function: CCitiesDoc::DeleteRecordInDatabaseAndContainer	File: CitiesDoc.cpp	Line: 71	Message: Unable to delete the record with id 1
+Type: Error	Function: CCitiesView::OnContextOptionRemove	File: CitiesView.cpp	Line: 1f4	

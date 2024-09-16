@@ -13,6 +13,8 @@
 #include "ChildFrm.h"
 #include "CitiesDoc.h"
 #include "CitiesView.h"
+#include "PersonsDoc.h"
+#include "PersonsView.h"
 
 
 #ifdef _DEBUG
@@ -106,13 +108,22 @@ BOOL CPhonebookApp::InitInstance()
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views
 	CMultiDocTemplate* pDocTemplate;
-	pDocTemplate = new CMultiDocTemplate(IDR_PhonebookTYPE,
+	pDocTemplate = new CMultiDocTemplate(IDR_CITIES_TYPE,
 		RUNTIME_CLASS(CCitiesDoc),
 		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
 		RUNTIME_CLASS(CCitiesView));
 	if (!pDocTemplate)
 		return FALSE;
 	AddDocTemplate(pDocTemplate);
+
+	pDocTemplate = new CMultiDocTemplate(IDR_USERS_TYPE,
+		RUNTIME_CLASS(CPersonsDoc),
+		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
+		RUNTIME_CLASS(CPersonsView));
+	if (!pDocTemplate)
+		return FALSE;
+	AddDocTemplate(pDocTemplate);
+
 
 	// create main MDI Frame window
 	CMainFrame* pMainFrame = new CMainFrame;
@@ -170,6 +181,11 @@ protected:
 // Implementation
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+//	afx_msg void OnContextmenuView();
+//	afx_msg void OnContextmenuAdd();
+//	afx_msg void OnContextmenuChange();
+//	afx_msg void OnContextmenuRemove();
 };
 
 CAboutDlg::CAboutDlg() noexcept : CDialogEx(IDD_ABOUTBOX)
@@ -209,8 +225,4 @@ void CPhonebookApp::LoadCustomState()
 void CPhonebookApp::SaveCustomState()
 {
 }
-
-// CPhonebookApp message handlers
-
-
 

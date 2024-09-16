@@ -206,7 +206,17 @@
     <ClInclude Include="Message.h" />
     <ClInclude Include="MessageDlg.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Person.h" />
+    <ClInclude Include="PersonsAccessor.h" />
+    <ClInclude Include="PersonsData.h" />
+    <ClInclude Include="PersonsDlg.h" />
+    <ClInclude Include="PersonsDoc.h" />
+    <ClInclude Include="PersonsTable.h" />
+    <ClInclude Include="PersonsView.h" />
     <ClInclude Include="Phonebook.h" />
+    <ClInclude Include="Phonenumber.h" />
+    <ClInclude Include="PhonenumbersAccessor.h" />
+    <ClInclude Include="PhonenumbersTable.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -228,12 +238,23 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="PersonsData.cpp" />
+    <ClCompile Include="PersonsDlg.cpp" />
+    <ClCompile Include="PersonsDoc.cpp" />
+    <ClCompile Include="PersonsTable.cpp" />
+    <ClCompile Include="PersonsView.cpp" />
     <ClCompile Include="Phonebook.cpp" />
+    <ClCompile Include="PhonenumbersTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Phonebook.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\Cancel_32.ico" />
+    <Image Include="..\..\..\..\Info_32.ico" />
+    <Image Include="..\..\..\..\question_32.ico" />
+    <Image Include="..\..\..\..\Success_32.ico" />
+    <Image Include="..\..\..\..\Warning_32.ico" />
     <Image Include="..\..\..\Cancel_32.ico" />
     <Image Include="..\..\..\Info_32.ico" />
     <Image Include="..\..\..\question_32.ico" />

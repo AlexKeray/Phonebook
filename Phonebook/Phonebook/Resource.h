@@ -17,6 +17,8 @@
 #define IDR_MAINFRAME_256               129
 #define IDR_PhonebookTYPE               130
 #define ID_WINDOW_MANAGER               131
+#define IDR_USERS_TYPE				132
+#define IDR_CITIES_TYPE				133
 #define IDR_THEME_MENU                  200
 #define ID_SET_STYLE                    201
 #define ID_VIEW_APPLOOK_WIN_2000        205
@@ -41,6 +43,7 @@
 #define ID_ICON_INFO                    324
 #define IDI_ICON2                       325
 #define ID_ICON_QUESTION                325
+#define IDD_DLG_PERSON                  326
 #define IDC_EDB_CITIES_NAME             1000
 #define IDC_EDB_CITY_NAME               1000
 #define IDC_EDB_CITIES_AREA             1001
@@ -49,6 +52,20 @@
 #define IDC_ST_MESSAGE                  1003
 #define IDC_ST_CITY_NAME                1004
 #define IDC_ST_CITY_AREA                1005
+#define IDC_EDB_FIRST_NAME              1006
+#define IDC_EDB_MIDDLE_NAME             1007
+#define IDC_LC_PHONENUMBERS             1008
+#define IDC_EDB_LAST_NAME               1009
+#define IDC_EDB_UCN                     1010
+#define IDC_ST_FIRST_NAME               1011
+#define IDC_ST_MIDDLE_NAME              1013
+#define IDC_ST_LAST_NAME                1014
+#define IDC_EDB_ADDRESS                 1016
+#define IDC_ST_UCN                      1017
+#define IDC_ST_ADDRESS                  1020
+#define IDC_CB_CITY_NAME                1021
+#define IDC_CB_CITY_AREA                1022
+#define IDC_LIST1                       1023
 #define ID_CONTEXTMENU_VIEW             32772
 #define ID_CONTEXTMENU_CHANGE           32773
 #define ID_CONTEXTMENU_ADD              32774
@@ -58,9 +75,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        326
+#define _APS_NEXT_RESOURCE_VALUE        328
 #define _APS_NEXT_COMMAND_VALUE         32776
-#define _APS_NEXT_CONTROL_VALUE         1006
-#define _APS_NEXT_SYMED_VALUE           313
+#define _APS_NEXT_CONTROL_VALUE         1024
+#define _APS_NEXT_SYMED_VALUE           315
 #endif
 #endif

@@ -61,6 +61,12 @@
     <Filter Include="Source Files\Dialogs">
       <UniqueIdentifier>{29824c25-7f37-479b-8142-2abe2a0893e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Table\Persons">
+      <UniqueIdentifier>{cf6b2cd5-697e-4f58-8da5-a340f6ecbe2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Table\Phonenumbers">
+      <UniqueIdentifier>{cdf2e565-2263-4956-b2d5-34d67ee5da32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CitiesDoc.h">
@@ -129,6 +135,36 @@
     <ClInclude Include="MessageDlg.h">
       <Filter>Header Files\Dialogs</Filter>
     </ClInclude>
+    <ClInclude Include="PersonsTable.h">
+      <Filter>Header Files\Table\Persons</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonsAccessor.h">
+      <Filter>Header Files\Table\Persons</Filter>
+    </ClInclude>
+    <ClInclude Include="Person.h">
+      <Filter>Header Files\Table\Persons</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonsData.h">
+      <Filter>Header Files\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Phonenumber.h">
+      <Filter>Header Files\Table\Phonenumbers</Filter>
+    </ClInclude>
+    <ClInclude Include="PhonenumbersAccessor.h">
+      <Filter>Header Files\Table\Phonenumbers</Filter>
+    </ClInclude>
+    <ClInclude Include="PhonenumbersTable.h">
+      <Filter>Header Files\Table\Phonenumbers</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonsView.h">
+      <Filter>Header Files\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonsDoc.h">
+      <Filter>Header Files\Documents</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonsDlg.h">
+      <Filter>Header Files\Dialogs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CitiesView.cpp">
@@ -168,6 +204,24 @@
       <Filter>Source Files\Dialogs</Filter>
     </ClCompile>
     <ClCompile Include="MessageDlg.cpp">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="PersonsTable.cpp">
+      <Filter>Source Files\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="PersonsData.cpp">
+      <Filter>Source Files\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="PhonenumbersTable.cpp">
+      <Filter>Source Files\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="PersonsDoc.cpp">
+      <Filter>Source Files\Documents</Filter>
+    </ClCompile>
+    <ClCompile Include="PersonsView.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="PersonsDlg.cpp">
       <Filter>Source Files\Dialogs</Filter>
     </ClCompile>
   </ItemGroup>
@@ -211,6 +265,21 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="..\..\..\question_32.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Success_32.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Cancel_32.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Warning_32.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Info_32.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\question_32.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

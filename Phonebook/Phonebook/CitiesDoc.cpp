@@ -59,6 +59,7 @@ BOOL CCitiesDoc::SelectDatabaseRecordById(long lRecordId, City& rCity, bool& bIs
 		CLog::Message(CLog::Mode::Error, LOG_CONTEXT, strMessage);
 		return FALSE;
 	}
+	return TRUE;
 }
 
 BOOL CCitiesDoc::InsertRecordInDatabaseAndContainer(City& rCity)
@@ -113,8 +114,13 @@ BOOL CCitiesDoc::DeleteRecordInDatabaseAndContainer(int nItemIndex, City& rCity)
 		return FALSE;
 	}
 
-	DeleteContainerItemByIndex(nItemIndex);
+	if (!DeleteContainerItemByIndex(nItemIndex))
+	{
+		CLog::Message(CLog::Mode::Error, LOG_CONTEXT);
+		return FALSE;
+	}
 
+	return TRUE;
 }
 
 bool CCitiesDoc::DeleteContainerItemByIndex(int nDeleteItemIndex) 

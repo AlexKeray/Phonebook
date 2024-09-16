@@ -46,6 +46,7 @@ private:
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
+// Message map
 	DECLARE_MESSAGE_MAP()
 
 // Mesage handlers
